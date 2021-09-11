@@ -1,8 +1,9 @@
 import { Button } from "components/button";
 import { CareerItem, useJobs } from "domains/career";
+import { Link } from "react-router-dom";
 
 export const ApplyJob = () => {
-  const { page, setPage, jobs } = useJobs();
+  const { page, setPage, data: jobs, isLoading } = useJobs();
 
   return (
     <div className="px-4 py-6 grid gap-4 md:grid-cols-2 max-w-7xl mx-auto">
@@ -24,19 +25,19 @@ export const ApplyJob = () => {
           <Button onClick={() => setPage(page + 1)}>Next</Button>
         </div>
         <div className="max-w-xl mx-auto py-6 space-y-5">
-          {jobs
-            ? jobs.map((job) => (
-                <a href={`/career/${job._id}`} className="block" key={job._id}>
-                  <CareerItem
-                    title={job.title}
-                    department={job.department}
-                    level={job.level}
-                    studentFriendly={job.level === "internship"}
-                    showApplyButton
-                  />
-                </a>
-              ))
-            : "Loading..."}
+          {jobs &&
+            jobs.map((job) => (
+              <Link to={`/career/${job._id}`} className="block" key={job._id}>
+                <CareerItem
+                  title={job.title}
+                  department={job.department}
+                  level={job.level}
+                  studentFriendly={job.level === "internship"}
+                  showApplyButton
+                />
+              </Link>
+            ))}
+          {isLoading && "Loading..."}
         </div>
       </div>
     </div>

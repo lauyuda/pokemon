@@ -1,69 +1,56 @@
-import { BASE_URL } from "const";
-import { CareerItem, useJobs } from "domains/career";
-import { fetchJson } from "lib/fetch-json";
+import { CareerItem, useCreateJobMutation, useJobs } from "domains/career";
+import { useFormik } from "formik";
 import * as React from "react";
 import { TextInput } from "../components/text-input";
+import * as Yup from "yup";
 
-const createJob = (data) =>
-  fetchJson(`${BASE_URL}/job`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: data,
-  });
-
-const usePersistedState = (storageKey, defaultValue) => {
-  const [value, setValue] = React.useState(
-    () => sessionStorage.getItem(storageKey) || defaultValue
-  );
-
-  React.useEffect(() => {
-    sessionStorage.setItem(storageKey, value);
-  }, [value, storageKey]);
-
-  return [value, setValue];
-};
+const validationSchema = Yup.object({
+  title: Yup.string().required("Title is required"),
+  level: Yup.string().required("Level is required"),
+  department: Yup.string().required("Department is required"),
+  summary: Yup.string().required("Summary is required"),
+  headcount: Yup.number()
+    .required("Headcount is required")
+    .min(1, "Headcount must be at least 1"),
+});
 
 export const Career = () => {
-  const [title, setTitle] = usePersistedState("jobTitle", "");
-
-  const [level, setLevel] = usePersistedState("level", "internship");
-  const [department, setDepartment] = usePersistedState("department", "");
-  const [summary, setSummary] = usePersistedState("summary", "");
-  const [headcount, setHeadcount] = usePersistedState("headcount", 1);
-
   const titleInputRef = React.useRef();
 
-  const { loadJobs, page, setPage, jobs } = useJobs();
+  const { page, setPage, data: jobs } = useJobs();
+  const createJobMutation = useCreateJobMutation();
+  const formik = useFormik({
+    initialValues: {
+      title: "",
+      level: "internship",
+      department: "",
+      summary: "",
+      headcount: 1,
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      createJobMutation.mutate(
+        {
+          ...values,
+          headcount: Number(values.headcount),
+        },
+        {
+          onSuccess: () => {
+            formik.resetForm();
+
+            if (titleInputRef.current) {
+              titleInputRef.current.focus();
+            }
+          },
+        }
+      );
+    },
+  });
 
   return (
     <div className="max-w-7xl mx-auto">
       <div>
-        <form
-          onSubmit={(ev) => {
-            ev.preventDefault();
-            createJob({
-              title,
-              level,
-              department,
-              summary,
-              headcount: Number(headcount),
-            }).then(() => {
-              loadJobs();
-              setTitle("");
-              setLevel("internship");
-              setDepartment("");
-              setSummary("");
-              setHeadcount(1);
-
-              if (titleInputRef.current) {
-                titleInputRef.current.focus();
-              }
-            });
-          }}
-          className="p-3"
-        >
+        <form onSubmit={formik.handleSubmit} className="p-3">
           <div className="text-xl mb-3">Add Job Posting</div>
           <div className="space-y-5">
             <div>
@@ -73,11 +60,17 @@ export const Career = () => {
               <TextInput
                 name="title"
                 id="title"
-                value={title}
-                onChangeValue={setTitle}
-                required
+                value={formik.values.title}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 ref={titleInputRef}
+                disabled={createJobMutation.isLoading}
               />
+              {formik.touched.title && formik.errors.title && (
+                <div className="block text-xs text-red-500">
+                  {formik.errors.title}
+                </div>
+              )}
             </div>
             <div>
               <label className="block text-sm" htmlFor="level">
@@ -86,15 +79,21 @@ export const Career = () => {
               <select
                 name="level"
                 id="level"
-                value={level}
-                onChange={(ev) => setLevel(ev.target.value)}
-                required
+                value={formik.values.level}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                disabled={createJobMutation.isLoading}
               >
                 <option value="internship">Internship</option>
                 <option value="entry">Entry</option>
                 <option value="experienced">Experienced</option>
                 <option value="manager">Manager</option>
               </select>
+              {formik.touched.level && formik.errors.level && (
+                <div className="block text-xs text-red-500">
+                  {formik.errors.level}
+                </div>
+              )}
             </div>
             <div>
               <label className="block text-sm" htmlFor="department">
@@ -102,13 +101,19 @@ export const Career = () => {
               </label>
               <input
                 type="text"
-                value={department}
-                onChange={(ev) => setDepartment(ev.target.value)}
+                value={formik.values.department}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 name="department"
                 id="department"
                 placeholder="e.g. Engineering"
-                required
+                disabled={createJobMutation.isLoading}
               />
+              {formik.touched.department && formik.errors.department && (
+                <div className="block text-xs text-red-500">
+                  {formik.errors.department}
+                </div>
+              )}
             </div>
             <div>
               <label className="block text-sm" htmlFor="summary">
@@ -117,10 +122,16 @@ export const Career = () => {
               <textarea
                 name="summary"
                 id="summary"
-                value={summary}
-                onChange={(ev) => setSummary(ev.target.value)}
-                required
+                value={formik.values.summary}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                disabled={createJobMutation.isLoading}
               />
+              {formik.touched.summary && formik.errors.summary && (
+                <div className="block text-xs text-red-500">
+                  {formik.errors.summary}
+                </div>
+              )}
             </div>
             <div>
               <label className="block text-sm" htmlFor="headcount">
@@ -130,13 +141,21 @@ export const Career = () => {
                 type="number"
                 name="headcount"
                 id="headcount"
-                value={headcount}
-                onChangeValue={setHeadcount}
-                required
+                value={formik.values.headcount}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                disabled={createJobMutation.isLoading}
               />
+              {formik.touched.headcount && formik.errors.headcount && (
+                <div className="block text-xs text-red-500">
+                  {formik.errors.headcount}
+                </div>
+              )}
             </div>
             <div>
-              <button>ADD</button>
+              <button type="submit" disabled={createJobMutation.isLoading}>
+                ADD
+              </button>
             </div>
           </div>
         </form>
