@@ -33,10 +33,11 @@ export const TypeImage = ({ types, children }) => {
     //     cardToColour = typeColour[types[1].type.name]
     // }
 
-    // const gradientColours = `${" from-"}${cardFromColour} ${"to-"}${cardToColour}`
+    const gradientColours = `${"from-"}${cardFromColour} ${"to-"}${cardToColour}`
 
     return (
-        <div className={`w-full p-2 rounded-full bg-gradient-to-b transform hover:scale-110 transition duration-300 from-${cardFromColour} to-${cardToColour}`}>
+        // <div className={`w-full p-2 rounded-full bg-gradient-to-b transform hover:scale-110 transition duration-300 from-${cardFromColour} to-${cardToColour}`}>
+        <div className={`w-full p-2 rounded-full bg-gradient-to-b transform hover:scale-110 transition duration-300 ${gradientColours}`}>
         {/* from-${cardFromColour} to-${cardToColour} */}
             {children}
         </div>
