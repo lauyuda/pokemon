@@ -90,7 +90,7 @@ export const PokemonDetails = ({ pokemonName }) => {
                     className={
                       "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
                       (openTab === 2
-                        ? "text-white bg-" + colour
+                        ? "text-white bg-" + "red-500"
                         : "text-" + colour + " bg-white")
                     }
                     onClick={e => {

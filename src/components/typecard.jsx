@@ -35,7 +35,7 @@ export const TypeCard = ({ types, isSeeThrough = false, children }) => {
 
     return (
         <div className="relative w-full my-1">
-            <div className={`absolute inset-0 w-full rounded-lg bg-gradient-to-b ${cardFromColour} ${cardToColour} ${isSeeThrough && "opacity-50"}`}></div>
+            <div className={`absolute inset-0 w-full rounded-lg bg-gradient-to-b ${cardToColour}  ${isSeeThrough && "opacity-50"} ` + cardFromColour }></div>
             <div className="relative">
                 {children}
                 {cardFromColour}
