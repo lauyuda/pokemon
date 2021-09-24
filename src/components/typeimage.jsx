@@ -21,19 +21,20 @@ export const TypeImage = ({ types, children }) => {
         electric: "yellow-400",
         fairy: "pink-300",
     };
-    const cardFromColour = typeColour[types[0].type.name];
+    // const cardFromColour = typeColour[types[0].type.name];
 
-    // Assuming 2 types max for each pokemon
-    let cardToColour = ""
-    if (types.length === 1) {
-        cardToColour = typeColour[types[0].type.name]
-    }
-    else {
-        cardToColour = typeColour[types[1].type.name]
-    }
+    // // Assuming 2 types max for each pokemon
+    // let cardToColour = ""
+    // if (types.length === 1) {
+    //     cardToColour = typeColour[types[0].type.name]
+    // }
+    // else {
+    //     cardToColour = typeColour[types[1].type.name]
+    // }
 
     return (
         <div className={`w-full p-2 rounded-full bg-gradient-to-b from-purple-400 to-blue-500 transform hover:scale-110 transition duration-300`}>
+        {/* from-${cardFromColour} to-${cardToColour} */}
             {children}
         </div>
     );
