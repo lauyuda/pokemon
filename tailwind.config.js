@@ -8,13 +8,19 @@ module.exports = {
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
+      backgroundImage: {
+        'wallpaper': "url('/src/images/pokebox.png')",
+      },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      cursor: ['responsive', 'hover', 'focus', 'group-hover'],
+    },
   },
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/aspect-ratio"),
+    require('@tailwindcss/line-clamp'),
   ],
 };

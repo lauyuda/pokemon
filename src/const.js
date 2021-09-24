@@ -1,1 +1,1 @@
-export const BASE_URL = "https://ecomm-service.herokuapp.com";
+export const BASE_URL = "https://pokeapi.co/api/v2";

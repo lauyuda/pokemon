@@ -1,10 +1,11 @@
-import { useAuth, LogoutButton } from "domains/auth";
-import { ShoppingBagIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
+import { SearchPokemon } from "domains/pokedex/components/search-pokemon";
+import pokemonLogo from "images/pokemon.png"
+import { usePokemonCounterContext } from "domains/pokedex/hooks/use-pokemon-counter";
 
 export const AppShell = ({ children }) => {
-  const { status } = useAuth();
-
+  const pokemonCounter = usePokemonCounterContext()
+  
   return (
     <>
       <header className="md:sticky md:top-0 bg-white md:z-10">
@@ -15,42 +16,36 @@ export const AppShell = ({ children }) => {
                 to="/"
                 className="text-xl inline-block mr-4 font-bold text-pink-700 hover:text-pink-900"
               >
-                React Lover
+                <img src={pokemonLogo} alt="pokemonLogo" className="h-6" />
               </Link>
               <div className="flex items-center gap-4">
                 <Link
-                  to="/marketplace"
+                  to="/pokedex"
                   className="text-sm font-medium text-gray-700 hover:text-gray-800"
                 >
-                  Marketplace
+                  Pokedex
                 </Link>
                 <Link
-                  to="/career"
+                  to="/pokedexV2"
                   className="text-sm font-medium text-gray-700 hover:text-gray-800"
                 >
-                  Career
+                  PokedexV2 (POC)
+                </Link>
+                <Link
+                  to="/pokebox"
+                  className="flex text-sm font-medium text-gray-700 hover:text-gray-800"
+                >
+                  PokeBox
+                  {pokemonCounter > 0 &&
+                    <span className="relative flex h-4 w-4">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-4 w-4 bg-yellow-500 text-xs flex justify-center items-center">{pokemonCounter}</span>
+                    </span>
+                  }
                 </Link>
               </div>
             </nav>
-            {status === "authenticated" ? (
-              <div className="flex gap-3">
-                <Link
-                  to="/shopping-cart"
-                  className="group -m-2 p-2 flex items-center"
-                >
-                  <ShoppingBagIcon
-                    className="flex-shink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
-                    aria-hidden="true"
-                  />
-                  <span className="sr-only">View cart</span>
-                </Link>
-                <LogoutButton />
-              </div>
-            ) : (
-              <Link href="/login" className="text-sm px-4 py-1 text-pink-500">
-                Login
-              </Link>
-            )}
+            <SearchPokemon />
           </div>
         </div>
       </header>

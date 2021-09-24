@@ -1,0 +1,5 @@
+```jsx
+<div>
+    <Search />
+</div>
+```
