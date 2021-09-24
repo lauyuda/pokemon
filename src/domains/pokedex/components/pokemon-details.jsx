@@ -1,6 +1,6 @@
 import { usePokemon, usePokemonSpecies } from "../hooks/use-pokedex";
-import * as React from "react";
-import { typeColour } from "../utils/type-color";
+import React, { useState } from "react";
+import { typeColour } from "lib/type-color";
 import { TypeChip } from "components/typechip";
 import { TypeCard } from "components/typecard";
 import { StatsTable } from "components/stats-table";
@@ -14,10 +14,7 @@ import { Capture } from "./capture";
 export const PokemonDetails = ({ pokemonName }) => {
   const { data, isLoading } = usePokemon(pokemonName);
   const { data: bio, isLoading: isLoadingBio } = usePokemonSpecies(pokemonName);
-  const [openTab, setOpenTab] = React.useState(1);
-  
-  let color = ""
-  !isLoading && (color = typeColour(data.types[0].type.name))
+  const [openTab, setOpenTab] = useState(1);
 
   return (
     <div>
@@ -26,7 +23,7 @@ export const PokemonDetails = ({ pokemonName }) => {
           <div className="fixed w-2/5 px-10 mb-10 mt-5">
             <div className="relative">
               <img src={data.sprites.other.dream_world.front_default} className="w-3/5 relative z-10" alt="" />
-              <div className={`flex flex-col border-4 border-${color} absolute top-10 bottom-10 left-10 right-10 z-0 items-start justify-center`} style={{ 'paddingLeft': "55%" }}>
+              <div className={`flex flex-col border-4 border-${typeColour(data.types[0].type.name)} absolute top-10 bottom-10 left-10 right-10 z-0 items-start justify-center`} style={{ 'paddingLeft': "55%" }}>
                 <p className="text-gray-500 md:text-sm lg:text-xl mt-3"> #{data.id}</p>
                 <div className="flex -center gap-2">
                   <p className="capitalize text-gray-800 md:text-l lg:text-3xl font-semibold mb-5"> {pokemonName}</p>
@@ -72,8 +69,8 @@ export const PokemonDetails = ({ pokemonName }) => {
                     className={
                       "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
                       (openTab === 1
-                        ? "text-white bg-" + color
-                        : "text-" + color + " bg-white")
+                        ? "text-white bg-" + typeColour(data.types[0].type.name)
+                        : "text-" + typeColour(data.types[0].type.name) + " bg-white")
                     }
                     onClick={e => {
                       e.preventDefault();
@@ -89,8 +86,8 @@ export const PokemonDetails = ({ pokemonName }) => {
                     className={
                       "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
                       (openTab === 2
-                        ? "text-white bg-" + color
-                        : "text-" + color + " bg-white")
+                        ? "text-white bg-" + typeColour(data.types[0].type.name)
+                        : "text-" + typeColour(data.types[0].type.name) + " bg-white")
                     }
                     onClick={e => {
                       e.preventDefault();
@@ -106,8 +103,8 @@ export const PokemonDetails = ({ pokemonName }) => {
                     className={
                       "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
                       (openTab === 3
-                        ? "text-white bg-" + color
-                        : "text-" + color + " bg-white")
+                        ? "text-white bg-" + typeColour(data.types[0].type.name)
+                        : "text-" + typeColour(data.types[0].type.name) + " bg-white")
                     }
                     onClick={e => {
                       e.preventDefault();
@@ -123,8 +120,8 @@ export const PokemonDetails = ({ pokemonName }) => {
                     className={
                       "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
                       (openTab === 4
-                        ? "text-white bg-" + color
-                        : "text-" + color + " bg-white")
+                        ? "text-white bg-" + typeColour(data.types[0].type.name)
+                        : "text-" + typeColour(data.types[0].type.name) + " bg-white")
                     }
                     onClick={e => {
                       e.preventDefault();
