@@ -10,8 +10,8 @@ export const Pokebox = () => {
 
   // calculates modifiable variables required for pokebox UI
   let numOfPokemons = capturedPokemons.length;
-  let maxPages = Math.ceil(numOfPokemons / 9);
-  let freeGrids = (numOfPokemons % 9) === 0 ? 0 : 9 - (numOfPokemons % 9);
+  let maxPages = Math.max(1, Math.ceil(numOfPokemons / 9));
+  let freeGrids = (numOfPokemons === 0) ? 9 : ((numOfPokemons % 9) === 0 ? 0 : 9 - (numOfPokemons % 9));
 
   // reset counter to 0 after page load
   const updatePokemonCounter = usePokemonCounterUpdateContext();
@@ -28,8 +28,8 @@ export const Pokebox = () => {
 
     // update variables for UI after releasing
     numOfPokemons = capturedPokemons.length
-    maxPages = Math.ceil(numOfPokemons / 9)
-    freeGrids = 9 - (numOfPokemons % 9);
+    maxPages = Math.max(1, Math.ceil(numOfPokemons / 9));
+    freeGrids = (numOfPokemons === 0) ? 9 : ((numOfPokemons % 9) === 0 ? 0 : 9 - (numOfPokemons % 9));
     page > maxPages && setPage(maxPages)
   };
 
@@ -59,7 +59,8 @@ export const Pokebox = () => {
           )}
           {page === maxPages && (
             [...Array(freeGrids).keys()].map((value) => (
-              <div className="bg-gray-100 opacity-50 w-46 h-46 flex justify-center items-center rounded-lg m-3" key={value} />
+              <div className="bg-gray-100 opacity-50 w-48 h-48 flex justify-center items-center rounded-lg m-2" key={value}>
+              </div>
             ))
           )}
         </div>

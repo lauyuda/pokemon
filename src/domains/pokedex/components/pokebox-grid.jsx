@@ -18,7 +18,7 @@ export const PokeboxGrid = ({ pokemonName, handleReleasePokemon }) => {
           <span
             className="absolute right-1 top-1 rounded-full py-1 px-2 text-red-500 transform hover:scale-110 transition duration-300 hover:cursor-pointer hover:text-red-600"
             onClick={() => { setIsOpen(true) }}>
-            <TrashIcon className="h-5 w-5" />
+            <TrashIcon className="h-6 w-6" />
           </span>
           <div onMouseOver={() => setHover(true)} onMouseLeave={() => setHover(false)}>
             <div className="flex flex-col items-center pt-5">
