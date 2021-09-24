@@ -33,7 +33,7 @@ export const TypeCard = ({ types, isSeeThrough = false, children }) => {
         cardToColour = typeColour[types[1].type.name]
     }
 
-    const test1 = `${" from-green-500"} ${"to-pink-400"}`
+    const test1 = `${" from-"}${cardFromColour} ${"to-pink-400"}`
 
     return (
         <div className="relative w-full my-1">
