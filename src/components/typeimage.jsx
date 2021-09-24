@@ -33,7 +33,7 @@ export const TypeImage = ({ types, children }) => {
     // }
 
     return (
-        <div className={`w-full p-2 rounded-full bg-gradient-to-b from-${cardFromColour} to-blue-500 transform hover:scale-110 transition duration-300`}>
+        <div className={`w-full p-2 rounded-full bg-gradient-to-b text-${cardFromColour} from-red-400 to-blue-500 transform hover:scale-110 transition duration-300`}>
         {/* from-${cardFromColour} to-${cardToColour} */}
             {children}
         </div>
