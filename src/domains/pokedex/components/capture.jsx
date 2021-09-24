@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
 import pokeball from "images/pokeball.png"
 import { usePokemonCounterUpdateContext } from "../hooks/use-pokemon-counter";
 
@@ -9,8 +9,10 @@ export const Capture = ({ pokemonName }) => {
     const previouslyCaptured = !data ? false : data.includes(pokemonName);
 
     // set state for captured pokemons for more responsive UIUX
-    // default is false if was not captured on previous sessions
-    const [capture, setCapture] = React.useState(false || previouslyCaptured);
+    const [capture, setCapture] = useState(previouslyCaptured);
+    useEffect(() => {
+        setCapture(previouslyCaptured)
+    }, [previouslyCaptured])
 
     const updatePokemonCounter = usePokemonCounterUpdateContext();
 
@@ -19,8 +21,11 @@ export const Capture = ({ pokemonName }) => {
         setCapture(true);
         updatePokemonCounter("increase");
     };
+    
+    // DEPRECATED with removal of releasePokemon()
+    // const [capture, setCapture] = React.useState(false || previouslyCaptured);
 
-    // ALERT: releasePokemon deprecated. Can only release Pokemon inside the Pokebox now.
+    // ALERT: releasePokemon() deprecated. Can only release Pokemon inside the Pokebox now.
     // function releasePokemon() {
     //     let newData = JSON.parse(localStorage.getItem("captured"));
     //     const releaseIndex = newData.indexOf(pokemonName)
