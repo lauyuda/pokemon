@@ -33,12 +33,12 @@ export const TypeCard = ({ types, isSeeThrough = false, children }) => {
     //     cardToColour = typeColour[types[1].type.name]
     // }
 
-    const gradientColours = `${" from-"}${cardFromColour} ${"to-"}${cardToColour}`
+    const gradientColours = `${" from-"}${cardFromColour} ${" to-"}${cardToColour}`
 
     return (
         <div className="relative w-full my-1">
             {/* <div className={`absolute inset-0 w-full rounded-lg bg-gradient-to-b ${isSeeThrough && "opacity-50"} ` + gradientColours }></div> */}
-            <div className={"absolute inset-0 w-full rounded-lg bg-gradient-to-b" + gradientColours}></div>
+            <div className={"absolute inset-0 w-full rounded-lg bg-gradient-to-b " + gradientColours}></div>
             <div className={"relative"}>
                 {children}
             </div>
