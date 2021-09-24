@@ -25,22 +25,20 @@ export const TypeCard = ({ types, isSeeThrough = false, children }) => {
 
     // Assuming a pokemon can have 2 different types max
     // if only 1 type, both from and to gradient colors will be the same
-    let cardToColour = "to-"
+    let cardToColour = ""
     if (types.length === 1) {
-        cardToColour = cardToColour + typeColour[types[0].type.name]
+        cardToColour = typeColour[types[0].type.name]
     }
     else {
-        cardToColour = cardToColour + typeColour[types[1].type.name]
+        cardToColour = typeColour[types[1].type.name]
     }
 
     return (
         <div className="relative w-full my-1">
             {/* <div className={`absolute inset-0 w-full rounded-lg bg-gradient-to-b ${isSeeThrough && "opacity-50"} ` + cardFromColour }></div> */}
-            <div className={cardToColour + " absolute inset-0 w-full rounded-lg bg-gradient-to-b from-" + cardFromColour + " bg-" +  cardFromColour}></div>
-            <div className={"relative text-red-500"}>
+            <div className={"to-" + cardToColour + " absolute inset-0 w-full rounded-lg bg-gradient-to-b from-red-300 " + cardFromColour + " to-pink-400"}></div>
+            <div className={"relative"}>
                 {children}
-                {cardFromColour}
-                {cardToColour}
             </div>
         </div>
     );
