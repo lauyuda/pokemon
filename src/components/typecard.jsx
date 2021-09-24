@@ -25,13 +25,13 @@ export const TypeCard = ({ types, isSeeThrough = false, children }) => {
 
     // Assuming a pokemon can have 2 different types max
     // if only 1 type, both from and to gradient colors will be the same
-    let cardToColour = ""
-    if (types.length === 1) {
-        cardToColour = typeColour[types[0].type.name]
-    }
-    else {
-        cardToColour = typeColour[types[1].type.name]
-    }
+    const cardToColour = types.length === 1 ? typeColour[types[0].type.name] : typeColour[types[1].type.name]
+    // if (types.length === 1) {
+    //     cardToColour = typeColour[types[0].type.name]
+    // }
+    // else {
+    //     cardToColour = typeColour[types[1].type.name]
+    // }
 
     const gradientColours = `${" from-"}${cardFromColour} ${"to-"}${cardToColour}`
 

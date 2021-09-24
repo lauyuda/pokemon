@@ -24,6 +24,7 @@ export const TypeImage = ({ types, children }) => {
     const cardFromColour = typeColour[types[0].type.name];
 
     // // Assuming 2 types max for each pokemon
+    const cardToColour = types.length === 1 ? typeColour[types[0].type.name] : typeColour[types[1].type.name]
     // let cardToColour = ""
     // if (types.length === 1) {
     //     cardToColour = typeColour[types[0].type.name]
@@ -32,8 +33,10 @@ export const TypeImage = ({ types, children }) => {
     //     cardToColour = typeColour[types[1].type.name]
     // }
 
+    // const gradientColours = `${" from-"}${cardFromColour} ${"to-"}${cardToColour}`
+
     return (
-        <div className={`w-full p-2 rounded-full bg-gradient-to-b text-${cardFromColour} from-red-400 to-blue-500 transform hover:scale-110 transition duration-300`}>
+        <div className={`w-full p-2 rounded-full bg-gradient-to-b transform hover:scale-110 transition duration-300 from-${cardFromColour} to-${cardToColour}`}>
         {/* from-${cardFromColour} to-${cardToColour} */}
             {children}
         </div>
