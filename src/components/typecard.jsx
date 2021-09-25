@@ -24,7 +24,7 @@ export const TypeCard = ({ types, isSeeThrough = false, children }) => {
 
     const cardFromColour = typeColour[types[0].type.name];
 
-    const cardToColour = types.length === 1 ? typeColour[types[0].type.name] : typeColour[types[1].type.name]
+    const cardToColour = types.length === 1 ? typeColour[types[0].type.name] : typeColour[types[1].type.name];
 
     return (
         <div className="relative w-full my-1">
