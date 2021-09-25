@@ -23,7 +23,28 @@ export const TypeCard = ({ types, isSeeThrough = false, children }) => {
     };
     const cardFromColour = typeColour[types[0].type.name];
 
-    const typeColour2 = {
+    const fromColor = {
+        normal: "from-gray-400",
+        poison: "from-purple-900",
+        grass: "from-green-500",
+        fire: "from-red-400",
+        water: "from-blue-600",
+        bug: "from-green-300",
+        flying: "from-purple-400",
+        steel: "from-gray-500",
+        dragon: "from-purple-600",
+        ice: "from-blue-300",
+        fighting: "from-yellow-900",
+        rock: "from-yellow-800",
+        ground: "from-yellow-600",
+        dark: "from-gray-900",
+        ghost: "from-indigo-900",
+        psychic: "from-pink-500",
+        electric: "from-yellow-400",
+        fairy: "from-pink-300",
+    };
+
+    const toColour = {
         normal: "from-gray-400",
         poison: "from-purple-900",
         grass: "from-green-500",
@@ -47,7 +68,7 @@ export const TypeCard = ({ types, isSeeThrough = false, children }) => {
     function colourPicker(prefix, color) {
         return `${prefix}-${typeColour[color]}`
     }
-    const cardFromColour2 = typeColour2[types[0].type.name];
+    const cardFromColour2 = fromColor[types[0].type.name];
     const cardToColour2 = types.length === 1 ? colourPicker("to", types[0].type.name) : colourPicker("to", types[1].type.name);
 
     // Assuming a pokemon can have 2 different types max
