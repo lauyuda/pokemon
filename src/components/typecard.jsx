@@ -1,26 +1,6 @@
 import * as React from "react";
 
 export const TypeCard = ({ types, isSeeThrough = false, children }) => {
-    const typeColour = {
-        normal: "gray-400",
-        poison: "purple-900",
-        grass: "green-500",
-        fire: "red-400",
-        water: "blue-600",
-        bug: "green-300",
-        flying: "purple-400",
-        steel: "gray-500",
-        dragon: "purple-600",
-        ice: "blue-300",
-        fighting: "yellow-900",
-        rock: "yellow-800",
-        ground: "yellow-600",
-        dark: "gray-900",
-        ghost: "indigo-900",
-        psychic: "pink-500",
-        electric: "yellow-400",
-        fairy: "pink-300",
-    };
     const fromColour = {
         normal: "from-gray-400",
         poison: "from-purple-900",
@@ -42,13 +22,34 @@ export const TypeCard = ({ types, isSeeThrough = false, children }) => {
         fairy: "from-pink-300",
     };
 
+    const toColour = {
+        normal: "to-gray-400",
+        poison: "to-purple-900",
+        grass: "to-green-500",
+        fire: "to-red-400",
+        water: "to-blue-600",
+        bug: "to-green-300",
+        flying: "to-purple-400",
+        steel: "to-gray-500",
+        dragon: "to-purple-600",
+        ice: "to-blue-300",
+        fighting: "to-yellow-900",
+        rock: "to-yellow-800",
+        ground: "to-yellow-600",
+        dark: "to-gray-900",
+        ghost: "to-indigo-900",
+        psychic: "to-pink-500",
+        electric: "to-yellow-400",
+        fairy: "to-pink-300",
+    };
+
     const cardFromColour = fromColour[types[0].type.name];
 
-    const cardToColour = types.length === 1 ? typeColour[types[0].type.name] : typeColour[types[1].type.name];
+    const cardToColour = types.length === 1 ? toColour[types[0].type.name] : toColour[types[1].type.name];
 
     return (
         <div className="relative w-full my-1">
-            <div className={`absolute inset-0 w-full rounded-lg bg-gradient-to-b ${cardFromColour} to-${cardToColour} ${isSeeThrough && "opacity-50"}`}></div>
+            <div className={`absolute inset-0 w-full rounded-lg bg-gradient-to-b ${cardFromColour} ${cardToColour} ${isSeeThrough && "opacity-50"}`}></div>
             <div className={"relative"}>
                 {children}
             </div>
