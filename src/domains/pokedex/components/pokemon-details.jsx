@@ -1,6 +1,6 @@
 import { usePokemon, usePokemonSpecies } from "../hooks/use-pokedex";
 import React, { useState } from "react";
-import { typeColour } from "lib/type-color";
+import { getTypeColour, getBorderColour } from "lib/type-color";
 import { TypeChip } from "components/typechip";
 import { TypeCard } from "components/typecard";
 import { StatsTable } from "components/stats-table";
@@ -17,9 +17,9 @@ export const PokemonDetails = ({ pokemonName }) => {
   const [openTab, setOpenTab] = useState(1);
 
   let colour = "";
-  !isLoading && (colour = typeColour(data.types[0].type.name));
+  !isLoading && (colour = getTypeColour(data.types[0].type.name));
   let borderColour = "";
-  !isLoading && (borderColour = "border-" + colour);
+  !isLoading && (borderColour = getBorderColour(data.types[0].type.name));
 
   return (
     <div>
