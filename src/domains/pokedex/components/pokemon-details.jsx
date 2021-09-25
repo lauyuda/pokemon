@@ -1,5 +1,5 @@
 import { usePokemon, usePokemonSpecies } from "../hooks/use-pokedex";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { typeColour } from "lib/type-color";
 import { TypeChip } from "components/typechip";
 import { TypeCard } from "components/typecard";
