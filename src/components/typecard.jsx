@@ -3,8 +3,8 @@ import * as React from "react";
 export const TypeCard = ({ types, isSeeThrough = false, children }) => {
     const typeColour = {
         normal: "gray-400",
-        poison: "purple-900",
-        grass: "from-green-500",
+        poison: "to-purple-900",
+        grass: "green-500",
         fire: "red-400",
         water: "blue-600",
         bug: "green-300",
@@ -28,7 +28,7 @@ export const TypeCard = ({ types, isSeeThrough = false, children }) => {
 
     return (
         <div className="relative w-full my-1">
-            <div className={`absolute inset-0 w-full rounded-lg bg-gradient-to-b ${cardFromColour} to-${cardToColour} ${isSeeThrough && "opacity-50"}`}></div>
+            <div className={`absolute inset-0 w-full rounded-lg bg-gradient-to-b from-${cardFromColour} ${cardToColour} ${isSeeThrough && "opacity-50"}`}></div>
             <div className={"relative"}>
                 {children}
             </div>
