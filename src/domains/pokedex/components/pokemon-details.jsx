@@ -27,10 +27,10 @@ export const PokemonDetails = ({ pokemonName }) => {
         <div className="flex">
           <div className="fixed w-2/5 px-10 mb-10 mt-5">
             <div className="relative">
-              <img src={data.sprites.other.dream_world.front_default} className="w-3/5 relative z-10" alt="" />
-              <div className={`flex flex-col border-4 absolute top-10 bottom-10 left-10 right-10 z-0 items-start justify-center ${borderColour} `} style={{ 'paddingLeft': "55%" }}>
-                <p className="text-gray-500 md:text-sm lg:text-xl mt-3">#{data.id}</p>
-                <div className="flex -center gap-2">
+              <img src={data.sprites.other.dream_world.front_default} className="w-1/2 relative z-10" alt="" />
+              <div className={`flex flex-col border-4 absolute top-10 bottom-10 left-10 right-10 z-0 items-start justify-center ${borderColour}`} style={{ 'paddingLeft': "50%" }}>
+                <p className="text-gray-500 md:text-sm lg:text-xl">#{data.id}</p>
+                <div className="flex gap-2">
                   <p className="capitalize text-gray-800 md:text-l lg:text-3xl font-semibold mb-5">{pokemonName}</p>
                   <Capture pokemonName={pokemonName} />
                 </div>
