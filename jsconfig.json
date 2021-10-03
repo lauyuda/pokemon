@@ -3,5 +3,12 @@
         "baseUrl": "src",
         "jsx": "react-jsx"
     },
-    "include": ["src"]
+    "include": [
+        "src"
+    ],
+    "typeAcquisition": {
+        "exclude": [
+            "dotenv"
+        ]
+    }
 }

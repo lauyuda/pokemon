@@ -11,6 +11,17 @@ module.exports = {
       backgroundImage: {
         'wallpaper': "url('/src/images/pokebox.png')",
       },
+      height: theme => ({
+        "screen-85vh": "85vh",
+        "screen/2": "50vh",
+        "screen/3": "calc(100vh / 3)",
+        "screen/4": "calc(100vh / 4)",
+        "screen/5": "calc(100vh / 5)",
+      }),
+      zIndex: {
+        '99': '99',
+        '-99': '-99',
+       }
     },
   },
   variants: {
