@@ -6,7 +6,7 @@ import { AppShell } from "./app-shell";
 import "./index.css";
 import { Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
-import { Earth } from './components/earth';
+import { Globe } from './components/globe';
 
 import { PageNotFound } from "./pages/404";
 import { PokeboxPage } from "pages/pokebox";
@@ -64,7 +64,7 @@ ReactDOM.render(
                 <div className="absolute w-full h-screen-85vh top-1/2 left-1/2 transform -translate-x-1/2 pb-20 -z-99">
                   <Canvas>
                     <Suspense fallback={null}>
-                      <Earth />
+                      <Globe />
                     </Suspense>
                   </Canvas>
                 </div>
