@@ -44,7 +44,7 @@ ReactDOM.render(
             </Route>
             <Route path="/" exact>
               <div className="relative">
-                <div className="absolute w-full h-screen-85vh pt-60 top-1/2 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-50 z-20">
+                <div className="absolute w-full h-screen-85vh pt-60 top-1/2 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-50">
                   <div className="space-y-5">
                     <p className="text-gray-900 font-bold text-5xl flex flex-col items-center">
                       <span>Meet every Pokemon,<br /></span>
