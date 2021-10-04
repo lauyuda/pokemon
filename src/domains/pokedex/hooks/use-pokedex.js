@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { getPokedex, getPokemon, getAllPokemon,getPokemonSpecies, getPokemonEvolution } from "../pokedex.service";
 
 export const usePokedex = () => {
-  const [page, setPage] = useState(window.sessionStorage.getItem('page') || "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20");
+  const [page, setPage] = useState(window.sessionStorage.getItem('page') || "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=21");
 
   useEffect(() => {
     window.sessionStorage.setItem('page', page)

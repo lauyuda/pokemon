@@ -8,8 +8,7 @@ export const PokemonCard = ({ pokemonName }) => {
 
     return (
         <div className="relative flex flex-col">
-            {isLoading && <LoadingCard key={ new Date().getTime() }/>}
-            {!isLoading && (
+            {!isLoading ? (
                 <Card
                     key={data.species.name}
                     imageUrl={data.sprites.other["official-artwork"].front_default}
@@ -22,7 +21,10 @@ export const PokemonCard = ({ pokemonName }) => {
                     spd={data.stats['5'].base_stat}
                     types={data.types}
                 />
-            )}
+            )
+                :
+                (<LoadingCard key={new Date().getTime()} />)
+            }
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import { fetchJson } from "lib/fetch-json";
 import { BASE_URL } from "const";
 
-export const getPokedex = (page = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20", signal) =>
+export const getPokedex = (page = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=21", signal) =>
   fetchJson(`${page}`, {
     signal,
   });

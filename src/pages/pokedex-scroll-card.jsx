@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { usePokedex, usePokemon, PokemonCard } from "domains/pokedex";
+import { LoadingCard } from "components/loading-card";
 import { TypeChip } from "components/typechip";
 import { TypeImage } from "components/typeimage";
 import { StatsTable } from "components/stats-table";
@@ -55,17 +56,14 @@ export const PokedexScrollCardPage = () => {
         }
       </div>
 
-      {pokedex && (
-        <div className="flex fixed bottom-0 scale-50 ">
-          <button className="transform translate-y-24" disabled={!isLoading && !pokedex.previous} onClick={() => setPage(pokedex.previous)}>
-            <ChevronLeftIcon className={`w-24 h-24 ${(!isLoading && !pokedex.previous) ? "text-gray-200" : "text-gray-600 hover:text-gray-900"}`} />
-          </button>
+      <div classname="relative w-full">
+        <div className="h-1/2">
           {isLoading ?
-            (<div className="font-bold">
-              Fetching Data...
-            </div>)
+            <div className="fixed bottom-10 left-28 -space-x-64 px-10">
+              <LoadingCard key={new Date().getTime()} />
+            </div>
             :
-            <div className="flex transform translate-y-24 -space-x-64">
+            <div className="flex fixed bottom-0 transform translate-y-28 -space-x-64 px-10">
               {(pokedex.results.map((item) => (
                 <div key={item.name} className="transform scale-50 transition hover:-translate-y-32 duration-500" onMouseOver={() => setName(item.name)}>
                   <PokemonCard key={item.name} pokemonName={item.name} />
@@ -74,11 +72,14 @@ export const PokedexScrollCardPage = () => {
               )}
             </div>
           }
-          <button className="transform translate-y-24" disabled={!isLoading && !pokedex.next} onClick={() => setPage(pokedex.next)}>
-            <ChevronRightIcon className={`w-24 h-24 ${(!isLoading && !pokedex.next) ? "text-gray-200" : "text-gray-600 hover:text-gray-900"}`} />
-          </button>
         </div>
-      )}
+        <button className="absolute bottom-28 left-5" disabled={!isLoading && !pokedex.previous} onClick={() => setPage(pokedex.previous)}>
+          <ChevronLeftIcon className={`w-24 h-24 ${(!isLoading && !pokedex.previous) ? "text-gray-200" : "text-gray-600 hover:text-gray-900"}`} />
+        </button>
+        <button className="absolute bottom-28 right-5" disabled={!isLoading && !pokedex.next} onClick={() => setPage(pokedex.next)}>
+          <ChevronRightIcon className={`w-24 h-24 ${(!isLoading && !pokedex.next) ? "text-gray-200" : "text-gray-600 hover:text-gray-900"}`} />
+        </button>
+      </div>
     </div>
   );
 };

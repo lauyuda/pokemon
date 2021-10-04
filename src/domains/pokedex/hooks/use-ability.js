@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import {  getPokedex, getAbility } from "../pokedex.service";
 
 export const usePokedex = () => {
-  const [page, setPage] = React.useState("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20");
+  const [page, setPage] = React.useState("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=21");
   
   const query = useQuery(["pokedex", page], () => getPokedex(page), {
     staleTime: 3000,
