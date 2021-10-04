@@ -1,3 +1,6 @@
+# View on Netlify
+Open [Netlify link](https://dreamy-noether-e85eb6.netlify.app/) to view it on your browser.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
