@@ -44,14 +44,14 @@ ReactDOM.render(
             </Route>
             <Route path="/" exact>
               <div className="relative">
-                <div className="absolute w-full h-screen-85vh pt-60 top-1/2 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-30 z-20">
+                <div className="absolute w-full h-screen-85vh pt-60 top-1/2 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-50 z-20">
                   <div className="space-y-5">
                     <p className="text-gray-900 font-bold text-5xl flex flex-col items-center">
                       <span>Meet every Pokemon,<br /></span>
                       <span>explore every region, and more. </span>
                     </p>
-                    <p className="text-gray-900 font-semibold text-3xl flex flex-col items-center">Grow your team with us.</p>
-                    <p className="text-gray-900 text-lg flex flex-col items-center">Ready to start your adventure? </p>
+                    <p className="text-gray-900 font-semibold text-3xl flex flex-col items-center">Grow your team with us now.</p>
+                    <p className="text-gray-900 font-normal text-xl flex flex-col items-center">Ready to start your adventure?</p>
                     <div className="flex flex-row items-center justify-center">
                       <Link
                         to="/pokedex"
