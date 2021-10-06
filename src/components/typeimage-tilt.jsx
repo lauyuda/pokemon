@@ -3,12 +3,17 @@ import VanillaTilt from "vanilla-tilt";
 
 export const TypeImageTilt = ({ types, children }) => {
     const tiltRef = useRef()
+    
     useEffect(() => {
-        VanillaTilt.init(tiltRef.current, {
+        const tiltNode = tiltRef.current
+        VanillaTilt.init(tiltNode, {
             max: 35,
             speed: 400
         })
-    })
+        return function cleanup() {
+            tiltNode.VanillaTilt.destroy()
+        }
+    },[])
 
     const typeColour = {
         normal: "gray-400",

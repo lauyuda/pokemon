@@ -7,14 +7,16 @@ import { Capture } from "../domains/pokedex/components/capture";
 export const CardTilt = ({ imageUrl, name, hp, atk, def, spatk, spdef, spd, types }) => {
     const tiltRef = useRef()
     useEffect(() => {
-        VanillaTilt.init(tiltRef.current, {
-            max: 15,
-            speed: 300,
-            glare: true,
-            'max-glare': 0.5
+        const tiltNode = tiltRef.current
+        VanillaTilt.init(tiltNode, {
+            max: 35,
+            speed: 400
         })
-    })
-    
+        return function cleanup() {
+            tiltNode.VanillaTilt.destroy()
+        }
+    },[])
+
     return (
         <div ref={tiltRef} className="flex justify-center items-center">
             <div className="flex justify-center">
