@@ -18,6 +18,9 @@ module.exports = {
         "screen/4": "calc(100vh / 4)",
         "screen/5": "calc(100vh / 5)",
       }),
+      width: {
+        'fit-content': 'fit-content'
+      },      
       zIndex: {
         '99': '99',
         '-99': '-99',

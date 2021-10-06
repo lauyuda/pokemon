@@ -7,7 +7,8 @@ import { Modal } from "components/modal";
 
 export const PokeboxGrid = ({ pokemonName, handleReleasePokemon }) => {
   const { data, isLoading } = usePokemon(pokemonName);
-  const [hover, setHover] = useState(true);
+  const [hover, setHover] = useState(false);
+
   // set state for release pokemon modal
   const [isOpen, setIsOpen] = useState(false)
 

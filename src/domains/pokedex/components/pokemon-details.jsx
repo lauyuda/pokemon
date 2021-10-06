@@ -1,5 +1,6 @@
 import { usePokemon, usePokemonSpecies } from "../hooks/use-pokedex";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import VanillaTilt from "vanilla-tilt";
 import { getTypeColour, getBorderColour } from "lib/type-color";
 import { TypeChip } from "components/typechip";
 import { TypeCard } from "components/typecard";
@@ -16,6 +17,18 @@ export const PokemonDetails = ({ pokemonName }) => {
   const { data: bio, isLoading: isLoadingBio } = usePokemonSpecies(pokemonName);
   const [openTab, setOpenTab] = useState(1);
 
+  const tiltRef = useRef()
+  useEffect(() => {
+    const tiltNode = tiltRef.current
+    VanillaTilt.init(tiltNode, {
+      max: 35,
+      speed: 400
+    })
+    return function cleanup() {
+      !isLoading && tiltNode.VanillaTilt && tiltNode.VanillaTilt.destroy()
+    }
+  }, [isLoading, data])
+
   let colour = "";
   !isLoading && (colour = getTypeColour(data.types[0].type.name));
   let borderColour = "";
@@ -27,7 +40,7 @@ export const PokemonDetails = ({ pokemonName }) => {
         <div className="flex">
           <div className="fixed w-2/5 px-10 mb-10 mt-5">
             <div className="relative">
-              <img src={data.sprites.other.dream_world.front_default} className="w-1/2 relative z-10" alt="" />
+              <img ref={tiltRef} src={data.sprites.other.dream_world.front_default} className="w-1/2 relative z-10" alt="" />
               <div className={`flex flex-col border-4 absolute top-10 bottom-10 left-10 right-10 z-0 items-start justify-center ${borderColour}`} style={{ 'paddingLeft': "50%" }}>
                 <p className="text-gray-500 md:text-sm lg:text-xl">#{data.id}</p>
                 <div className="flex gap-2">
@@ -44,18 +57,18 @@ export const PokemonDetails = ({ pokemonName }) => {
             </div>
             <div className="mt-10 px-10">
               <TypeCard types={data.types}>
-                <div className="space-y-2 py-2 px-4">
+                <div className="space-y-2 py-4 px-4">
                   <div className="leading-tight">
-                    <span className="font-semibold">About:</span>
+                    <span className="font-semibold bg-white bg-opacity-50 rounded px-1 py-0.5">About:</span>
                     {!isLoadingBio && (
-                      <div className="font-normal">{bio.flavor_text_entries[2].flavor_text.replace("", " ")}</div>
+                      <div className="font-normal mt-2 bg-white bg-opacity-50 rounded px-1 py-0.5">{bio.flavor_text_entries[2].flavor_text.replace("", " ")}</div>
                     )}
                   </div>
-                  <div>
+                  <div className="w-fit-content bg-white bg-opacity-50 rounded px-1 py-0.5">
                     <span className="font-semibold">Height: </span>
                     <span className="font-normal">{data.height / 10}m</span>
                   </div>
-                  <div>
+                  <div className="w-fit-content bg-white bg-opacity-50 rounded px-1 py-0.5">
                     <span className="font-semibold">Weight: </span>
                     <span className="font-normal">{data.weight / 10}kg</span>
                   </div>
