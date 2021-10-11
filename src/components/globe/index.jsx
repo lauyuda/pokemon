@@ -3,7 +3,7 @@ import { useFrame, useLoader } from '@react-three/fiber'
 import * as THREE from "three"
 
 import PokemonMap from "../../assets/textures/pokemonmap.png"
-import PokemonCloudMap from "../../assets/textures/cloudmap.jpg"
+import PokemonCloudMap from "../../assets/textures/cloudmap.png"
 import { TextureLoader } from 'three'
 
 export function Globe() {
@@ -22,7 +22,7 @@ export function Globe() {
         <>
             <pointLight color="#f6f3ea" position={[2, 0, 5]} intensity={0.8} />
             <mesh ref={cloudsRef}>
-                <sphereGeometry args={[2.41, 32, 32]} />
+                <sphereGeometry args={[2.415, 32, 32]} />
                 <meshPhongMaterial
                     map={cloudsMap}
                     opacity={0.3}
